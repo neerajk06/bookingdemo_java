@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Hotel Management System</title>
+    <link rel="stylesheet" href="../static/bootstrap.css" th:if="${mode == 'development'}" th:href="@{/bootstrap.css}" />
+    <link rel="stylesheet" href="../static/bootstrap.css" th:if="${mode == 'production'}" th:href="@{/bootstrap.min.css}" />
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Booking Demo</a>
+            </div>
+            <p class="navbar-text navbar-right" th:text="'Signed in as '+ ${username}" style="margin-right: 10px;">Signed in as Anonymus </p>
+        </div>
+    </nav>
+</header>
+
+<div  class="container">
+    <h1>Hotel Management System</h1>
+    <hr>
+    <h2>Update Hotel</h2>
+    <br>
+    <form action="#" th:action="@{/saveHotel}" th:object="${hotel}" method="POST">
+        <!-- Hidden field for id -->
+        <input type="hidden" th:field="*{id}">
+        <input type="text" th:field="*{hotelName}" placeholder="Hotel Name" class="form-control mb-4 col-4" />
+        <br>
+        <input type="text" th:field="*{pricePerNight}" placeholder="Price" class="form-control mb-4 col-4"/>
+        <br>
+        <input type="text" th:field="*{numberOfNights}" placeholder="Day Count" class="form-control mb-4 col-4"/>
+        <br>
+        <button type="submit" class="btn btn-info col-2">Save Hotel</button>
+    </form>
+</div>
+<footer class="footer" style="position: absolute; bottom: 0; background-color: lightblue">
+    <div class="container">
+        <p class="text-muted" th:text="${#dates.format(datetime,'dd MMM yyyy HH:mm')}" >Page was rendered today</p>
+    </div>
+</footer>
+</body>
+</html>
